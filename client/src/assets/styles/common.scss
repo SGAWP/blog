@@ -1,0 +1,98 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height      : 100%;
+    height          : 100%;
+    margin          : 0px;
+    padding         : 0px;
+    background-color: #eaeaea;
+    font-family     : "Fira Sans Condensed", sans-serif;
+}
+
+.page {
+    margin-top: 5px;
+    padding   : 10px 20px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 959.99px) {
+    .mr10 {
+        margin-right: 0px;
+    }
+}
+
+.pb20 {
+    padding-bottom: 20px;
+}
+
+@media screen and (max-width: 959.99px) {
+    .pb20 {
+        padding-bottom: 0px;
+    }
+
+    .pbm20 {
+        padding-bottom: 20px;
+    }
+}
+
+.mat-nav-list {
+    width: 100%;
+
+    a {
+        .mat-icon {
+            margin-right: 15px;
+            color       : #3f51b5;
+        }
+
+        display: block;
+    }
+}
+
+.header {
+    color     : #ffffff;
+    padding   : 0 5px;
+    background: #3f51b5;
+}
+
+.container {
+    padding         : 5px 15px 15px 15px;
+    background-color: #ffffff;
+}
+
+.component-holder {
+    border: 1px solid #424242;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.tab-icon {
+    margin-right: 8px;
+    color       : #3f51b5;
+}
+
+.fw-b {
+    color      : #3f51b5;
+    font-weight: bold;
+}
+
+.fw-p {
+    color      : #ff4081;
+    font-weight: bold;
+}
+
+.fit-cover {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+    cursor    : pointer;
+}

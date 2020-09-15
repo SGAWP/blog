@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="categories_id" required>
+                        <mat-option *ngFor="let category of categories" [value]="category.category_id">
+                            {{category.category_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title" maxlength="100" autocomplete="off" required>
+                    <mat-error *ngIf="form.controls.title.invalid">
+                        {{getTitleErrorMessage()}}
+                    </mat-error>
+                    <button mat-icon-button *ngIf="form.controls.title.value" matSuffix
+                        (click)="form.get('title').setValue('')" matTooltip="Clear">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <input matInput formControlName="description" maxlength="500" autocomplete="off" required>
+                    <mat-error *ngIf="form.controls.description.invalid">
+                        {{getDescriptionErrorMessage()}}
+                    </mat-error>
+                    <button mat-icon-button *ngIf="form.controls.description.value" matSuffix
+                        (click)="form.get('description').setValue('')" matTooltip="Clear">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Content</mat-label>
+                    <textarea matInput formControlName="content" maxlength="9999" autocomplete="off"
+                        required></textarea>
+                    <mat-error *ngIf="form.controls.content.invalid">
+                        {{getContentErrorMessage()}}
+                    </mat-error>
+                    <button mat-icon-button matSuffix matTooltip="Usage documentation" (click)="link()" color="primary">
+                        <mat-icon>info</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="form.controls.content.value" matSuffix
+                        (click)="form.get('content').setValue('')" matTooltip="Clear">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button color="primary" [mat-dialog-close]="true" [disabled]="form.invalid || form.disabled"
+        (click)="onSave()">
+        Save
+    </button>
+    <button mat-button color="warn" [mat-dialog-close] cdkFocusInitial>Close</button>
+</div>

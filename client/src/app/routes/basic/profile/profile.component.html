@@ -1,0 +1,61 @@
+<div *ngIf="user">
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxFlex="100" class="pbm20 pb20">
+                <div class="hover-image">
+                    <input type="file" (change)="onFileSelect($event)" class="dn" #input>
+                    <img class="h200" *ngIf="avatarPreview" [src]="avatarPreview">
+                    <img class="h200" *ngIf="!avatarPreview" src="/assets/images/avatar_default.png">
+                    <a (click)="triggerClick()">
+                        <i class="material-icons">
+                            cloud_upload
+                        </i>
+                    </a>
+                </div>
+            </div>
+            <div fxFlex="100">
+                <span class="fw-b">{{user.username}}</span>
+            </div>
+            <div fxFlex="100">
+                Role <span class="fw-p">{{user.role_name}}</span>
+            </div>
+            <div fxFlex="100" class="pbm20 pb20">
+                Created Date <span class="fw-b">
+                    {{user.createdAt | date: 'dd/MM/yyyy'}}
+                </span>
+            </div>
+            <div fxFlex="100" class="w-full">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Email</mat-label>
+                    <input matInput autofocus formControlName="email" maxlength="200" autocomplete="off">
+                    <mat-error
+                        *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+                        Please enter a valid email address.
+                    </mat-error>
+                    <button mat-icon-button *ngIf="form.controls.email.value" matSuffix
+                        (click)="form.get('email').setValue('')" matTooltip="Clear">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxFlex="100" class="w-full pbm20 pb20">
+            <button mat-raised-button color="primary" class="w-full" (click)="onSave()"
+                [disabled]="form.invalid || form.disabled">
+                Save
+            </button>
+        </div>
+        <div fxFlex="100" class="w-full">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Reset password</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <app-reset-password></app-reset-password>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

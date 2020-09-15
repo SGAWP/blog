@@ -1,0 +1,60 @@
+<div class="login-page">
+    <div class="content">
+        <form class="login-form" [formGroup]="form">
+            <div class="loading-shade" *ngIf="loading">
+                <mat-spinner></mat-spinner>
+            </div>
+            <mat-toolbar fxLayout="row" fxLayout.lt-md="column">
+                <span fxFlex></span>
+                <img class="logo" src="../../../assets/images/logo.png">
+                <b>{{title}}</b>
+                <span fxFlex></span>
+            </mat-toolbar>
+            <div fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="100">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Username" autofocus formControlName="username" maxlength="100"
+                            autocomplete="off">
+                        <mat-error *ngIf="form.controls.username.invalid">
+                            {{getUsernameErrorMessage()}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="100">
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password"
+                            [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+                            maxlength="100" autocomplete="off">
+                        <mat-error *ngIf="form.controls.password.invalid">
+                            {{getPasswordErrorMessage()}}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" class="pb20 pbm20">
+                <div fxFlex="100">
+                    <button class="w-full m-b-8" mat-raised-button color="primary"
+                        [disabled]="form.invalid || form.disabled" (click)="onSignIn()">
+                        Sign in
+                    </button>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="50" class="mr10 pbm20">
+                    <a class="w-full" mat-raised-button color="primary" routerLink="/auth/sign-up">
+                        Create new account
+                    </a>
+                </div>
+                <div fxFlex="50">
+                    <a class="w-full" mat-raised-button color="primary" routerLink="/auth/reset-password">
+                        Forgot password?
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

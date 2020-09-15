@@ -1,0 +1,32 @@
+<mat-toolbar class="main-header" color="primary" fxLayout="row" fxLayoutAlign="center center">
+    <button href="#" (click)="sideMenuToggle($event)" mat-icon-button class="main-header__sidenav-toggle" fxHide.gt-xs>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <img class="logo" src="/assets/images/white-logo.png">
+    <a class="main-header__logo">Blog</a>
+    <ul class="main-header__right-menu">
+        <li>
+            <a mat-button routerLinkActive="active" routerLink="/categories" routerLinkActive="color"
+                class="hidden-sm">Categories</a>
+            <a mat-button routerLinkActive="active" routerLink="/posts" routerLinkActive="color"
+                class="hidden-sm">Posts</a>
+            <button mat-icon-button [matMenuTriggerFor]="menu"  class="hidden-sm">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <a mat-menu-item routerLinkActive="active" routerLink="/profile" routerLinkActive="color">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Profile</span>
+                </a>
+                <a mat-menu-item *ngIf="user?.role_name === 'Administrator'" routerLinkActive="active" routerLink="/administration" routerLinkActive="color">
+                    <mat-icon>admin_panel_settings</mat-icon>
+                    <span>Administration</span>
+                </a>
+                <button mat-menu-item (click)="onSignOut($event)">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Exit</span>
+                </button>
+            </mat-menu>
+        </li>
+    </ul>
+</mat-toolbar>

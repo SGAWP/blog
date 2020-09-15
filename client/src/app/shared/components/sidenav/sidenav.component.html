@@ -1,0 +1,28 @@
+<mat-nav-list>
+    <ng-container *ngIf="user?.role_name === 'Administrator'">
+        <a mat-list-item routerLinkActive="active" routerLink="/administration" routerLinkActive="color">
+            <mat-icon>admin_panel_settings</mat-icon>
+            Administration
+        </a>
+        <mat-divider></mat-divider>
+    </ng-container>
+    <a mat-list-item routerLinkActive="active" routerLink="/profile" routerLinkActive="color">
+        <mat-icon>account_circle</mat-icon>
+        Profile
+    </a>
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="active" routerLink="/categories" routerLinkActive="color">
+        <mat-icon>category</mat-icon>
+        Categories
+    </a>
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="active" routerLink="/posts" routerLinkActive="color">
+        <mat-icon>chrome_reader_mode</mat-icon>
+        Posts
+    </a>
+    <mat-divider></mat-divider>
+    <a mat-list-item (click)="onSignOut($event)">
+        <mat-icon>exit_to_app</mat-icon>
+        Exit
+    </a>
+</mat-nav-list>

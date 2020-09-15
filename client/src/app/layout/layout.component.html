@@ -1,0 +1,12 @@
+<app-toolbar (toggleSidebar)="sidebarToggle()"></app-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav [mode]=" screenWidth > 600 ? 'side' : 'over'" #sidenav [opened]="screenWidth > 600? false : true">
+        <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content fxLayout="column">
+        <div fxFlex="1 1 auto" class="main-content">
+            <router-outlet ></router-outlet>
+        </div>
+        <app-footer ></app-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

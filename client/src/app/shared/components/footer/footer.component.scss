@@ -1,0 +1,20 @@
+.main-footer {
+    color     : #ffffff;
+    border-top: solid 1px rgba(0, 0, 0, .12);
+    padding   : 15px 20px;
+    background: #3f51b5;
+    p {
+        margin   : 0px;
+        font-size: 17px;
+
+        a {
+            color          : #ffffff;
+            text-decoration: none;
+            cursor         : pointer;
+        }
+
+        a:hover {
+            color: #ff4081;
+        }
+    }
+}

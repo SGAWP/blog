@@ -1,0 +1,52 @@
+<h1>Comment</h1>
+<form [formGroup]="form" (keyup.enter)="onSave()">
+    <div fxLayout="row" fxLayout.xs="column">
+        <div fxFlex="100">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Comment</mat-label>
+                <textarea matInput formControlName="comment" maxlength="500" autocomplete="off" required></textarea>
+                <mat-error *ngIf="form.controls.comment.invalid">
+                    {{getCommentErrorMessage()}}
+                </mat-error>
+                <button mat-icon-button *ngIf="form.controls.comment.value" matSuffix
+                    (click)="form.get('comment').setValue('')" matTooltip="Clear">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" class="pb20 pbm20">
+        <span fxFlex></span>
+        <button mat-raised-button color="primary" [disabled]="form.invalid || form.disabled" (click)="onSave()">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
+</form>
+
+<mat-divider class="pb20 pbm20"></mat-divider>
+
+<div *ngFor="let comment of comments">
+    <mat-card>
+        <mat-card-header>
+            <img mat-card-avatar src="{{comment.user.avatar}}" *ngIf="comment.user.avatar">
+            <img mat-card-avatar src="/assets/images/avatar_default.png" *ngIf="!comment.user.avatar">
+            <mat-card-title>{{comment.user.username}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <ngx-md [data]="comment.comment"></ngx-md>
+        </mat-card-content>
+        <mat-card-actions *ngIf="user.user_id === comment.users_id">
+            <mat-chip-list>
+                <mat-chip color="primary" selected>{{comment.createdAt | date: 'dd/MM/yyyy HH:mm'}}</mat-chip>
+            </mat-chip-list>
+            <span fxFlex></span>
+            <button mat-icon-button color="accent" (click)="delete(comment)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <div class="pb20 pbm20"></div>
+</div>
+<mat-paginator [length]="totalItems" [pageSize]="pageSize" (page)="onPaginateChange($event)" showFirstLastButtons
+    [disabled]="!isActive">
+</mat-paginator>

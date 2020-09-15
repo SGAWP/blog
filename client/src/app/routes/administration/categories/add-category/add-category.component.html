@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <div fxLayout="row" fxLayout.xs="column">
+            <div fxFlex="100">
+                <mat-form-field class="w-full" appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <input matInput formControlName="category_name" maxlength="100" autocomplete="off" required>
+                    <mat-error *ngIf="form.controls.category_name.invalid">
+                        {{getCategoryErrorMessage()}}
+                    </mat-error>
+                    <button mat-icon-button *ngIf="form.controls.category_name.value" matSuffix
+                        (click)="form.get('category_name').setValue('')" matTooltip="Clear">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button color="primary" [mat-dialog-close]="true" (click)="onSave()"
+        [disabled]="form.invalid || form.disabled">Save</button>
+    <button mat-button color="warn" [mat-dialog-close] cdkFocusInitial>Close</button>
+</div>
