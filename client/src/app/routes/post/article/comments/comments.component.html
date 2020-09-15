@@ -35,12 +35,12 @@
         <mat-card-content>
             <ngx-md [data]="comment.comment"></ngx-md>
         </mat-card-content>
-        <mat-card-actions *ngIf="user.user_id === comment.users_id">
+        <mat-card-actions>
             <mat-chip-list>
                 <mat-chip color="primary" selected>{{comment.createdAt | date: 'dd/MM/yyyy HH:mm'}}</mat-chip>
             </mat-chip-list>
             <span fxFlex></span>
-            <button mat-icon-button color="accent" (click)="delete(comment)">
+            <button mat-icon-button color="accent" *ngIf="user.user_id === comment.users_id" (click)="delete(comment)">
                 <mat-icon>delete</mat-icon>
             </button>
         </mat-card-actions>
